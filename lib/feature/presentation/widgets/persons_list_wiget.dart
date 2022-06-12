@@ -3,8 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty/feature/domain/entities/person_entity.dart';
 import 'package:rick_and_morty/feature/presentation/bloc/person_list_cubit/person_list_cubit.dart';
 import 'package:rick_and_morty/feature/presentation/bloc/person_list_cubit/person_list_state.dart';
-
-import 'person_cart_widget.dart';
+import 'package:rick_and_morty/feature/presentation/widgets/person_card_widget.dart';
 
 class PersonsList extends StatelessWidget {
   const PersonsList({Key? key}) : super(key: key);
@@ -18,7 +17,13 @@ class PersonsList extends StatelessWidget {
         return _loadingIndicator();
       } else if (state is PersonLoaded) {
         persons = state.personsList;
+      } else if (state is PersonError) {
+        return Text(
+          'state.message',
+          style: TextStyle(color: Colors.white, fontSize: 25),
+        );
       }
+
       return ListView.separated(
         itemBuilder: (context, index) {
           return PersonCard(person: persons[index]);
