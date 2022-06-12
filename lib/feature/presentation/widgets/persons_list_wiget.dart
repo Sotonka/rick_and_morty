@@ -19,7 +19,7 @@ class PersonsList extends StatelessWidget {
         persons = state.personsList;
       } else if (state is PersonError) {
         return Text(
-          'state.message',
+          state.message,
           style: TextStyle(color: Colors.white, fontSize: 25),
         );
       }
