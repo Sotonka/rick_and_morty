@@ -15,7 +15,7 @@ class PersonDetailPage extends StatelessWidget {
         title: const Text('Character'),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 16.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
           children: [
             const SizedBox(
