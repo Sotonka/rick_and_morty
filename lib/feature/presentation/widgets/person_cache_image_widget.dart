@@ -3,21 +3,20 @@ import 'package:flutter/material.dart';
 
 class PersonCacheImage extends StatelessWidget {
   final String imageUrl;
-  final double width, height;
-  const PersonCacheImage(
-      {Key? key,
-      required this.height,
-      required this.width,
-      required this.imageUrl})
-      : super(key: key);
+  final double? width, height;
 
-  _imageWidget(ImageProvider imageProvider) {
+  const PersonCacheImage({
+    Key? key,
+    required this.imageUrl,
+    this.width,
+    this.height,
+  }) : super(key: key);
+
+  Widget _imageWidget(ImageProvider imageProvider) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(8.0),
-          bottomLeft: Radius.circular(8.0),
-        ),
+        borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(8), bottomLeft: Radius.circular(8)),
         image: DecorationImage(
           image: imageProvider,
           fit: BoxFit.cover,
@@ -36,13 +35,13 @@ class PersonCacheImage extends StatelessWidget {
         return _imageWidget(imageProvider);
       },
       placeholder: (context, url) {
-        return Center(
+        return const Center(
           child: CircularProgressIndicator(),
         );
       },
       errorWidget: (context, url, error) {
         return _imageWidget(
-          AssetImage('assets/images/noimage.jpg'),
+          const AssetImage('assets/images/noimage.jpg'),
         );
       },
     );
